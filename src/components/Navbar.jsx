@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { TbTerminal2, TbChevronDown, TbPlus, TbLayoutDashboard, TbLogout, TbMenuDeep, TbX } from "react-icons/tb";
+import { TbChevronDown, TbPlus, TbLayoutDashboard, TbLogout, TbMenuDeep, TbX } from "react-icons/tb";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
@@ -13,18 +13,19 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
 
-  // Mock Auth State as per assignment guidelines
-  const {user, logOut} = useAuth();
+  // Custom Live Connection Context Thread Instances
+  const { user, logOut } = useAuth();
 
-  const handleLogOut = ()=>{
+  const handleLogOut = () => {
     logOut()
       .then(() => {
         console.log('User logged out successfully');
+        setUserDropdown(false); // Close dropdown pipeline smoothly on execution success
       })
       .catch((err) => {
         console.error('Error logging out:', err);
       });
-  }
+  };
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -45,7 +46,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         
         {/* LOGO MATCHING IMAGE DESIGN */}
-        <Logo></Logo>
+        <Logo />
 
         {/* DESKTOP ROUTES */}
         <div className="hidden md:flex gap-8 items-center">
@@ -72,9 +73,11 @@ export default function Navbar() {
                 className="flex items-center gap-2.5 bg-zinc-900/90 border border-zinc-800/80 pl-2 pr-4 py-1.5 rounded-full hover:bg-zinc-800 hover:border-zinc-700/80 transition-all cursor-pointer select-none"
               >
                 <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 text-xs font-black flex items-center justify-center text-white shadow-md">
-                  {user.name[0]}
+                  {user.displayName ? user.displayName[0] : (user.email ? user.email[0].toUpperCase() : "U")}
                 </div>
-                <span className="text-xs font-bold text-zinc-300 tracking-tight">{user.name}</span>
+                <span className="text-xs font-bold text-zinc-300 tracking-tight">
+                  {user.displayName || "Active Developer"}
+                </span>
                 <TbChevronDown className={`w-3.5 h-3.5 text-zinc-500 transition-transform duration-300 ${userDropdown ? "rotate-180 text-white" : ""}`} />
               </button>
 
@@ -88,9 +91,11 @@ export default function Navbar() {
                     transition={{ duration: 0.2, ease: "easeOut" }}
                     className="absolute right-0 mt-3 w-56 bg-[#09090b]/90 border border-zinc-800/90 rounded-2xl p-2 shadow-2xl backdrop-blur-2xl z-50 overflow-hidden"
                   >
-                    {/* Meta Section */}
+                    {/* Meta Section - Made Completely Dynamic */}
                     <div className="px-3 py-2.5 border-b border-zinc-900/80 mb-1.5">
-                      <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">john.doe@gmail.com</p>
+                      <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest truncate">
+                        {user.email || "anonymous@node.io"}
+                      </p>
                       <span className="inline-block mt-1 text-[9px] font-black uppercase tracking-wider bg-indigo-500/10 text-indigo-400 px-2 py-0.5 rounded-full border border-indigo-500/20">
                         ⚡ Premium Member
                       </span>
@@ -105,10 +110,11 @@ export default function Navbar() {
                       <TbLayoutDashboard className="text-base text-purple-400 group-hover:scale-110 transition-transform" /> Manage Products
                     </Link>
                     
-                    {/* Destructive Action Trigger */}
+                    {/* Destructive Action Trigger Linked directly to Firebase Context callback */}
                     <button 
-                      onClick={() => setUser(null)} 
-                      className="w-full flex items-center gap-3 p-2.5 text-rose-400 hover:bg-rose-500/10 rounded-xl text-xs font-bold tracking-tight transition-all mt-1.5 border-t border-zinc-900"
+                      type="button"
+                      onClick={handleLogOut} 
+                      className="w-full flex items-center gap-3 p-2.5 text-rose-400 hover:bg-rose-500/10 rounded-xl text-xs font-bold tracking-tight transition-all mt-1.5 border-t border-zinc-900 cursor-pointer"
                     >
                       <TbLogout className="text-base" /> Log Out
                     </button>
