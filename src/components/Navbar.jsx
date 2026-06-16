@@ -73,7 +73,7 @@ export default function Navbar() {
                 className="flex items-center gap-2.5 bg-zinc-900/90 border border-zinc-800/80 pl-2 pr-4 py-1.5 rounded-full hover:bg-zinc-800 hover:border-zinc-700/80 transition-all cursor-pointer select-none"
               >
                 <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 text-xs font-black flex items-center justify-center text-white shadow-md">
-                  {user.displayName ? user.displayName[0] : (user.email ? user.email[0].toUpperCase() : "U")}
+                  {user?.photoURL || user?.email?.charAt(0)?.toUpperCase() || "U"}
                 </div>
                 <span className="text-xs font-bold text-zinc-300 tracking-tight">
                   {user.displayName || "Active Developer"}
