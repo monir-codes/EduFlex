@@ -1,5 +1,7 @@
 import "./globals.css";
 import Navbar from "../components/Navbar";
+import Footer from "@/components/Footer";
+import AuthProvider from "@/context/AuthProvider";
 
 export const metadata = {
   title: "EduFlex - Next.js Assessment Version",
@@ -10,13 +12,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="dark">
       <body className="bg-zinc-950 text-white min-h-screen flex flex-col pt-20 antialiased font-sans">
-        {/* Sticky Navbar alignment inside template bounds */}
-        <Navbar />
-        
-        {/* Children mapping components context container rules */}
-        <div className="flex-1 w-full">
-          {children}
-        </div>
+        <AuthProvider>
+          {/* Sticky Navbar alignment inside template bounds */}
+          <Navbar />
+
+          {/* Children mapping components context container rules */}
+          <div className="flex-1 w-full">{children}</div>
+          {/* Footer component */}
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );

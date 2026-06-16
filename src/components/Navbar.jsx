@@ -5,6 +5,7 @@ import { TbTerminal2, TbChevronDown, TbPlus, TbLayoutDashboard, TbLogout, TbMenu
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
+import useAuth from "@/hooks/useAuth";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +14,17 @@ export default function Navbar() {
   const pathname = usePathname();
 
   // Mock Auth State as per assignment guidelines
-  const [user, setUser] = useState({ name: "Moniruzzaman", email: "dev@eduflex.io" });
+  const {user, logOut} = useAuth();
+
+  const handleLogOut = ()=>{
+    logOut()
+      .then(() => {
+        console.log('User logged out successfully');
+      })
+      .catch((err) => {
+        console.error('Error logging out:', err);
+      });
+  }
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
