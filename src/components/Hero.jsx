@@ -52,7 +52,7 @@ export default function Hero() {
             transition={{ delay: 0.3 }}
             className="mt-8 flex flex-wrap gap-4 w-full sm:w-auto"
           >
-            <Link href="/items" className="flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3.5 rounded-xl font-bold text-sm transition-all shadow-lg shadow-indigo-600/20 w-full sm:w-auto">
+            <Link href="/courses" className="flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3.5 rounded-xl font-bold text-sm transition-all shadow-lg shadow-indigo-600/20 w-full sm:w-auto">
               Explore Courses &rarr;
             </Link>
             <Link href="/items" className="group flex items-center justify-center gap-2 bg-zinc-900 border border-zinc-800 text-white px-6 py-3.5 rounded-xl font-bold text-sm hover:bg-zinc-800 transition-all w-full sm:w-auto">

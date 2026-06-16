@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { TbStarFilled, TbCpu, TbSearch, TbArrowUpRight, TbBookOpen, TbVideo, TbDeviceLaptop } from "react-icons/tb";
 import Link from "next/link";
 import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 
 // 📚 Assignment Route safe dedicated Educational Dataset matrix array
 const COURSES_DATABASE_NODE = [
@@ -39,17 +40,51 @@ const COURSES_DATABASE_NODE = [
     lessons: "26 Modules",
     img: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop&q=60",
     tech: "Auth & Gateways"
+  },
+  { 
+    id: 104, 
+    title: "Next.js Edge Framework Architecture", 
+    instructor: "VercelVibes Academy", 
+    price: 79.00, 
+    oldPrice: 129.00, 
+    rating: 5.0, 
+    lessons: "34 Modules",
+    img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&q=60",
+    tech: "Next.js & Edge"
+  },
+  { 
+    id: 105, 
+    title: "React Native High-Performance Bundles", 
+    instructor: "Native Core Engine", 
+    price: 69.00, 
+    oldPrice: 119.00, 
+    rating: 4.8, 
+    lessons: "28 Modules",
+    img: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&auto=format&fit=crop&q=60",
+    tech: "Mobile & Hybrid"
+  },
+  { 
+    id: 106, 
+    title: "Framer Motion Fluid Interface Curves", 
+    instructor: "Animation Nexus", 
+    price: 39.00, 
+    oldPrice: 65.00, 
+    rating: 4.9, 
+    lessons: "22 Modules",
+    img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=60",
+    tech: "Tailwind & Framer"
   }
 ];
 
 export default function CoursesPage() {
   const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter();
 
   const filteredCourses = COURSES_DATABASE_NODE.filter((course) =>
     course.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const triggerToastFeedback = (courseTitle) => {
+  const triggerToastFeedback = (id) => {
     Swal.fire({
       toast: true,
       position: "top-end",
@@ -59,9 +94,12 @@ export default function CoursesPage() {
       background: "#18181b",
       color: "#ffffff",
       icon: "info",
-      title: `Accessing Module: ${courseTitle}`,
+      title: `Accessing Module: ${COURSES_DATABASE_NODE.find((c) => c.id === id)?.title}`,
       customClass: { popup: "border border-indigo-500/20 rounded-xl" }
     });
+
+    router.push('/courses/' + id);
+
   };
 
   return (
@@ -134,10 +172,10 @@ export default function CoursesPage() {
                 {/* Action Route Dispatch Handler link points */}
                 <button 
                   type="button" 
-                  onClick={() => triggerToastFeedback(course.title)}
+                  onClick={() => triggerToastFeedback(course.id)}
                   className="bg-zinc-950 border border-zinc-800 hover:border-indigo-500/40 text-zinc-300 hover:text-white px-3.5 py-2 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all flex items-center gap-1 cursor-pointer select-none"
                 >
-                  <span>Synergy Scope</span> <TbArrowUpRight className="text-xs text-indigo-400 group-hover:translate-x-0.5 transition-transform" />
+                  <span>View Details</span> <TbArrowUpRight className="text-xs text-indigo-400 group-hover:translate-x-0.5 transition-transform" />
                 </button>
               </div>
             </motion.div>

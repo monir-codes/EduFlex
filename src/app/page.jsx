@@ -14,7 +14,6 @@ return (
       <Spotlight />
       <Testimonials />
       <StatsBanner />
-      <Footer />
     </main>
   );
 }

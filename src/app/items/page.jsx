@@ -7,9 +7,86 @@ import Swal from "sweetalert2";
 
 // Global Products Repository Simulation Database Model 
 const INITIAL_COURSES_NODES = [
-  { id: 1, title: "Next.js 14 Complete Guide", provider: "CodingLab", price: 49.00, oldPrice: 79.00, rating: 4.9, category: "Web Dev", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&auto=format&fit=crop&q=60" },
-  { id: 2, title: "E-Commerce React Template", provider: "ThemeMarket", price: 39.00, oldPrice: 59.00, rating: 4.8, category: "UI/UX", img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&q=60" },
-  { id: 3, title: "Node.js Backend Bootcamp", provider: "DevAcademy", price: 45.00, oldPrice: 69.00, rating: 4.7, category: "Web Dev", img: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800&auto=format&fit=crop&q=60" }
+  { 
+    id: 1, 
+    title: "Next.js 14 Complete Guide", 
+    provider: "CodingLab", 
+    price: 49.00, 
+    oldPrice: 79.00, 
+    rating: 4.9, 
+    category: "Web Dev", 
+    img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&auto=format&fit=crop&q=60" 
+  },
+  { 
+    id: 2, 
+    title: "E-Commerce React Template", 
+    provider: "ThemeMarket", 
+    price: 39.00, 
+    oldPrice: 59.00, 
+    rating: 4.8, 
+    category: "UI/UX", 
+    img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&q=60" 
+  },
+  { 
+    id: 3, 
+    title: "Node.js Backend Bootcamp", 
+    provider: "DevAcademy", 
+    price: 45.00, 
+    oldPrice: 69.00, 
+    rating: 4.7, 
+    category: "Web Dev", 
+    img: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800&auto=format&fit=crop&q=60" 
+  },
+  { 
+    id: 4, 
+    title: "Framer Motion Advanced Layouts", 
+    provider: "MotionStudio", 
+    price: 29.00, 
+    oldPrice: 49.00, 
+    rating: 5.0, 
+    category: "UI/UX", 
+    img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=60" 
+  },
+  { 
+    id: 5, 
+    title: "Redis Caching Clusters System", 
+    provider: "SecOps Labs", 
+    price: 65.00, 
+    oldPrice: 99.00, 
+    rating: 4.6, 
+    category: "Backend", 
+    img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&q=60" 
+  },
+  { 
+    id: 6, 
+    title: "TypeScript Enterprise Guide", 
+    provider: "SyntaxLab", 
+    price: 55.00, 
+    oldPrice: 89.00, 
+    rating: 4.9, 
+    category: "Web Dev", 
+    img: "https://media.sitepen.com/blog-images/2021/10/blog_Definitive_TS_Guide-768x403.jpg" 
+  },
+  { 
+    id: 7, 
+    title: "Minimalist SaaS Dashboard Grid", 
+    provider: "VercelVibes", 
+    price: 34.00, 
+    oldPrice: 55.00, 
+    rating: 4.8, 
+    category: "UI/UX", 
+    img: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&auto=format&fit=crop&q=60" 
+  },
+  { 
+    id: 8, 
+    title: "MongoDB Aggregation Bootcamp", 
+    provider: "DataMastery", 
+    price: 42.00, 
+    oldPrice: 69.00, 
+    rating: 4.7, 
+    category: "Backend", 
+    img: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=800&auto=format&fit=crop&q=60" 
+  }
 ];
 
 export default function CoursesPage() {
@@ -123,7 +200,7 @@ export default function CoursesPage() {
                   href={`/items/${course.id}`} onClick={() => triggerQuickPreviewToast(course.title)}
                   className="bg-zinc-950 hover:bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white px-3 py-2 rounded-xl text-[10px] font-black uppercase tracking-wider tracking-tight transition-all flex items-center gap-1 cursor-pointer select-none"
                 >
-                  <span>Extract Node</span> <TbArrowUpRight className="text-xs text-indigo-400 group-hover:translate-x-0.5 transition-transform" />
+                  <span>View Details</span> <TbArrowUpRight className="text-xs text-indigo-400 group-hover:translate-x-0.5 transition-transform" />
                 </Link>
               </div>
             </motion.div>
